@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>沖繩 6 日親子自駕｜公開版</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--card-soft:#ffffff;--ink:#1f2937;--muted:#6b7280;--brand:#2563eb;--soft:#dbeafe;--soft-ink:#1d4ed8;--accent:#f97316;--line:#e5e7eb;--ok:#059669;--nav-bg:rgba(255,255,255,.92);--input-bg:#ffffff;--input-ink:#111827;--input-placeholder:#9ca3af}
+body.dark{--bg:#061224;--card:#0c1a31;--card-soft:#11213c;--ink:#f8fafc;--muted:#cbd5e1;--brand:#60a5fa;--soft:#1d4ed8;--soft-ink:#eff6ff;--accent:#fb923c;--line:#28415f;--ok:#34d399;--nav-bg:rgba(8,18,36,.92);--input-bg:#f8fafc;--input-ink:#0f172a;--input-placeholder:#94a3b8}
+*{box-sizing:border-box} body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;transition:background-color .25s,color .25s,border-color .25s}
+a{color:var(--brand);text-decoration:none} img{max-width:100%}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+.nav{position:sticky;top:0;z-index:30;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .inner{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:12px 0}.brand{font-weight:800;letter-spacing:.01em}.nav-actions{display:flex;gap:12px;align-items:center;min-width:0;flex:1;justify-content:flex-end}.navlinks{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:10px;scrollbar-width:none;-ms-overflow-style:none;padding:2px}.navlinks::-webkit-scrollbar{display:none}
+.navlinks a{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-height:46px;padding:0 18px;border-radius:999px;background:var(--card-soft);border:1px solid var(--line);font-size:15px;font-weight:800;color:var(--ink);line-height:1;box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 6px 18px rgba(15,23,42,.04)}
+.navlinks a:hover{border-color:var(--brand);color:var(--brand)}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-height:46px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card-soft);color:var(--ink);font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 6px 18px rgba(15,23,42,.04)}
+.hero{padding:28px 0 16px}.hero-grid{display:grid;grid-template-columns:1.3fr .9fr;gap:16px}.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 10px 30px rgba(15,23,42,.04)}
+.hero h1{margin:0 0 10px;font-size:clamp(28px,4vw,42px)} .sub{color:var(--muted)} .chips,.tags,.filters{display:flex;flex-wrap:wrap;gap:8px}.chip,.tag,.filter-btn,.reserve-pill{display:inline-flex;align-items:center;justify-content:center;padding:7px 12px;border-radius:999px;background:var(--soft);color:var(--soft-ink);font-size:13px;font-weight:800;border:1px solid transparent}.reserve-pill{background:#fff7ed;color:#c2410c;border:1px solid #fed7aa} body.dark .reserve-pill{background:#4a2208;color:#ffedd5;border-color:#7c2d12}
+.grid-2,.grid-3,.stats{display:grid;gap:16px}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:14px}.stat{background:var(--card-soft);border:1px solid var(--line);border-radius:18px;padding:14px}
+.section{padding:20px 0}.section h2{margin:0 0 12px;font-size:26px}.section .desc{color:var(--muted);margin:0 0 16px}.fold-card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}.fold-card summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;padding:16px 18px;font-weight:800;font-size:22px;background:var(--card-soft)}.fold-card summary::-webkit-details-marker{display:none}.fold-card .fold-body{padding:0 18px 18px}.fold-card .fold-desc{color:var(--muted);margin:0 0 16px}.fold-card summary::after{content:"展開";font-size:13px;font-weight:800;color:var(--soft-ink);background:var(--soft);padding:6px 10px;border-radius:999px}.fold-card[open] summary::after{content:"收合"}
+.sub-fold{margin-top:12px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card-soft)}
+.sub-fold summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;padding:12px 14px;font-weight:800;font-size:15px;background:transparent}
+.sub-fold summary::-webkit-details-marker{display:none}
+.sub-fold summary::after{content:"展開";font-size:12px;font-weight:800;color:var(--soft-ink);background:var(--soft);padding:5px 9px;border-radius:999px}
+.sub-fold[open] summary::after{content:"收合"}
+.sub-fold .sub-body{padding:0 14px 14px}
+.sub-list{display:grid;gap:10px}
+.shop-item{padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.shop-item strong{display:block;margin-bottom:4px;font-size:15px}
+.shop-note{margin:0 0 8px;color:var(--muted);font-size:14px;line-height:1.6}
+.shop-actions{display:flex;gap:8px;flex-wrap:wrap}
+.shop-actions a,.shop-actions button{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:700}
+.shop-actions a.map-btn{background:var(--brand);color:#fff;border-color:var(--brand)}
+.detail-steps{display:grid;gap:8px}
+.detail-step{padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.detail-step .step-time{display:block;font-weight:800;color:var(--brand);margin-bottom:4px}
+.detail-step p{margin:0;color:var(--muted);font-size:14px;line-height:1.7}
+
+.day-card{background:var(--card);border:1px solid var(--line);border-radius:18px;margin-bottom:14px;overflow:hidden}.day-card summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;padding:16px 18px;background:var(--card-soft)}.day-card summary::-webkit-details-marker{display:none}.timeline{padding:0 18px 18px}.timeline-item{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:14px 0;border-top:1px dashed var(--line)}.timeline-item .time{font-weight:800;color:var(--brand)}.timeline-item h4{margin:0 0 6px;font-size:22px;font-weight:800;line-height:1.35}.timeline-item p{margin:0;color:var(--muted);font-size:17px;line-height:1.75}.title-row{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.spot-link-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}.spot-link-row a,.actions a.btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:12px;background:var(--brand)!important;color:#fff!important;border:1px solid var(--brand)!important;font-weight:700}.spot-link-row button,.actions button,.secret button{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:12px;border:1px solid var(--line);background:var(--card-soft);color:var(--ink);font-weight:700;cursor:pointer}.desc:empty{display:none}.check-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.check-group{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}.check-group h3{margin:0 0 12px;font-size:18px}.check-group .checklist{display:flex;flex-direction:column;gap:10px}.qr-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-top:16px}.qr-card img{width:180px;height:180px;image-rendering:pixelated;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px}.spot-link-row a,.spot-link-row button,.btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:12px;border:1px solid var(--line);background:var(--card-soft);font-weight:700;cursor:pointer;color:var(--ink)}.spot-link-row button,.btn.secondary{background:var(--card-soft);color:var(--ink)}.btn{background:var(--brand);color:#fff;border-color:var(--brand)}
+.point-card,.food-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}.point-type,.food-meta{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.point-card h3,.food-card strong{margin:0}.point-card .meta-row{display:flex;gap:8px;justify-content:space-between;margin-top:8px}.meta-label{color:var(--muted)}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.notice{border-left:4px solid var(--accent);padding:12px 14px;background:#fff7ed;border-radius:12px}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace} body.dark .notice{background:#40200f;color:#ffedd5}
+.checklist label{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);background:var(--card-soft);border-radius:14px}.checklist label input[type=checkbox]{width:.95em;height:.95em;min-width:.95em;min-height:.95em;margin-top:.12em;flex:0 0 auto}.checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.secret{background:#111827;color:#fff;border-radius:16px;padding:14px}.secret code{display:block;background:rgba(255,255,255,.08);padding:10px;border-radius:10px;overflow:auto}.secret .mask{letter-spacing:.08em}
+input,textarea,select{background:var(--input-bg)!important;color:var(--input-ink)!important;border:1px solid var(--line)!important} input::placeholder,textarea::placeholder{color:var(--input-placeholder)!important;opacity:1}
+.footer{padding:28px 0 48px;color:var(--muted);font-size:14px}
+@media (max-width:900px){.hero-grid,.grid-2,.grid-3,.stats,.checklist{grid-template-columns:1fr}.timeline-item{grid-template-columns:1fr}.nav .inner{align-items:flex-start;flex-direction:column}.nav-actions{width:100%;justify-content:space-between}.navlinks{max-width:100%;flex:1}.spot-link-row{align-items:stretch}}
+.timeline-tools{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 14px}.timeline-tools .tool-btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card-soft);color:var(--ink);font-weight:800;cursor:pointer}.timeline-tools .tool-btn:hover{border-color:var(--brand);color:var(--brand)}.today-reminder{margin:14px 0 2px;padding:14px 14px 12px;border:1px solid color-mix(in srgb,var(--accent) 35%, var(--line));background:color-mix(in srgb,var(--accent) 10%, var(--card));border-radius:14px}.today-reminder h5{margin:0 0 8px;font-size:16px}.today-reminder ul{margin:0;padding-left:1.2em}.today-reminder li{margin:6px 0;color:var(--ink);line-height:1.6}.complete-wrap{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;margin-left:auto;padding-left:10px}.complete-wrap input{width:1em;height:1em;min-width:1em;min-height:1em}.complete-wrap span{font-size:14px;font-weight:700;color:var(--muted)}.timeline-item.is-done{opacity:.72}.timeline-item.is-done h4{text-decoration:line-through;text-decoration-thickness:1.5px}.title-row{gap:12px}.title-row h4{flex:1;min-width:0}@media (max-width:900px){.complete-wrap span{font-size:13px}.timeline-tools .tool-btn{flex:1}}
+/* iPhone 強化版 v1+v2+v3 */
+.progress-wrap{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;background:transparent}
+.progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--brand),var(--accent));box-shadow:0 0 10px color-mix(in srgb,var(--brand) 50%, transparent)}
+.app-banner{margin:14px 0 0;padding:12px 14px;border:1px solid var(--line);border-radius:16px;background:var(--card-soft);display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.app-banner p{margin:2px 0 0;color:var(--muted);font-size:14px}
+.app-banner .dismiss{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 10px;font-weight:800;cursor:pointer}
+.quick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.quick-card{display:flex;flex-direction:column;gap:6px;padding:14px;border:1px solid var(--line);border-radius:18px;background:var(--card-soft);text-decoration:none;color:var(--ink);min-height:104px;box-shadow:0 8px 24px rgba(15,23,42,.04)}
+.quick-card b{font-size:16px}
+.quick-card span{color:var(--muted);font-size:13px;line-height:1.5}
+.quick-card button{all:unset;cursor:pointer}
+.copy-toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:#111827;color:#fff;padding:10px 14px;border-radius:999px;font-size:14px;font-weight:800;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:80;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.copy-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.chart-fallback{margin-top:12px;padding:12px 14px;border:1px dashed var(--line);border-radius:14px;background:var(--card-soft);color:var(--muted);font-size:14px}
+.bottom-appnav{position:fixed;left:0;right:0;bottom:0;z-index:70;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--nav-bg) 92%, transparent);backdrop-filter:blur(16px);border-top:1px solid var(--line)}
+.bottom-appnav .bar{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.bottom-appnav a,.bottom-appnav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:54px;border-radius:16px;border:1px solid var(--line);background:var(--card);color:var(--muted);font-weight:800;font-size:12px;text-decoration:none;cursor:pointer}
+.bottom-appnav a.active,.bottom-appnav button.active{color:var(--brand);border-color:color-mix(in srgb,var(--brand) 40%, var(--line));background:color-mix(in srgb,var(--brand) 8%, var(--card))}
+.bottom-appnav .emoji{font-size:18px;line-height:1}
+body.has-bottom-nav .footer{padding-bottom:120px}
+@media (max-width:900px){
+  .quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .quick-grid{grid-template-columns:1fr 1fr}
+  .quick-card{min-height:92px;padding:12px}
+  .bottom-appnav .bar{gap:6px}
+  .bottom-appnav a,.bottom-appnav button{min-height:52px;font-size:11px}
+}
+
+</style>
+</head>
+<body class="has-bottom-nav">
+<div class="progress-wrap" aria-hidden="true"><div class="progress-bar" id="readProgress"></div></div>
+<nav class="nav"><div class="container inner"><div class="brand">沖繩 6 日親子自駕｜公開版</div><div class="nav-actions"><div class="navlinks"><a href="#overview">總覽</a><a href="#timeline">時間軸</a><a href="#points">導航點</a><a href="#food">美食</a><a href="#budget">預算</a><a href="#checklist">清單</a></div><button class="theme-toggle" id="themeToggle" type="button">切換深色</button></div></div></nav>
+<section class="hero" id="overview"><div class="container hero-grid"><div class="panel"><h1>沖繩 6 日親子自駕</h1><p class="sub">3/29–4/3｜2 大 1 小｜OTS Corolla Cross｜早去晚回｜所有主要景點與住宿皆附 MapCode 與可點擊 Google Maps。</p><div class="chips"><span class="chip">07:30 台南出發</span><span class="chip">桃機主停 T2 P4</span><span class="chip">出關右轉 → 10 號站牌</span><span class="chip">3/29 17:30 取車</span><span class="chip">4/3 14:00 還車</span><span class="chip">eSIM 台灣先安裝、日本再開啟</span></div><div class="stats"><div class="stat"><div class="sub">去程</div><strong>FD230 13:30→15:55</strong></div><div class="stat"><div class="sub">回程</div><strong>FD231 16:55→17:30</strong></div><div class="stat"><div class="sub">那霸住宿</div><strong>Hewitt 2 晚</strong></div><div class="stat"><div class="sub">中部住宿</div><strong>Ref 3 晚</strong></div></div>
+<div class="app-banner" id="a2hsBanner">
+  <div>
+    <strong>像 App 一樣用</strong>
+    <p>可用 Safari「加入主畫面」，旅途中會比一直找檔案順手很多。</p>
+  </div>
+  <button class="dismiss" id="dismissA2hs" type="button">知道了</button>
+</div>
+<div class="quick-grid" aria-label="快速操作">
+  <a class="quick-card" href="#timeline"><b>今日行程</b><span>快速跳到每日時間軸</span></a>
+  <a class="quick-card" href="#points"><b>導航點</b><span>MapCode 與 Google Maps</span></a>
+  <a class="quick-card" href="#food"><b>美食地圖</b><span>依分類快速找店</span></a>
+  <a class="quick-card" href="#budget"><b>預算區</b><span>即時試算購物與餐飲</span></a>
+  <a class="quick-card" href="#checklist"><b>Checklist</b><span>出發前到回程前都能勾選</span></a>
+  <div class="quick-card"><button id="heroTodayBtn" type="button"><b>只展開今天</b><span>一鍵聚焦當天行程</span></button></div>
+</div>
+</div><div class="panel"><h3>本次最重要原則</h3><div class="notice"><ol><li>Day1 以順利取車為第一優先。</li><li>Day4 Workman 不超時，因 18:45 已預約琉球之牛。</li><li>Day5 美麗海以海豚表演、海豚餵食體驗、鯨鯊餵食為主；海龜餵食視時間安排。</li><li>Day6 一切以 OTS 14:00 還車為優先。</li></ol></div></div></div></section>
+<section class="section"><div class="container"><div class="notice"><strong>公開版隱私處理：</strong><ul><li><strong>機票</strong>：僅顯示班號與時間，不顯示完整訂位代號</li><li><strong>住宿</strong>：僅顯示飯店名、住宿日期與導航</li><li><strong>租車</strong>：顯示車款、時間與營業所，不顯示完整敏感資料</li><li><strong>eSIM</strong>：只保留操作原則：台灣先安裝、日本再開啟</li></ul></div></div></section>
+<section class="section"><div class="container"><div class="card"><strong>取車提醒</strong><p style="margin:8px 0 0;color:#6b7280">OTS 取車當日機場報到需出示 QR 碼；公開版不顯示 QR，請改看私密版。</p></div></div></section><section class="section" id="timeline"><div class="container"><h2>每日時間軸</h2><p class="desc"></p><div class="timeline-tools"><button class="tool-btn" id="collapseAllDays" type="button">一鍵收合</button><button class="tool-btn" id="openTodayDay" type="button">只展開今天</button></div><details class="day-card" data-date="2026-03-29" data-day="day1" open=""><summary><div><strong>DAY1｜3/29（日）｜台南 → 桃園 → 那霸｜抵達暖身日</strong><div class="tags"><span class="tag">#暖身</span><span class="tag">#取車優先</span><span class="tag">#低強度</span></div></div><span>展開</span></summary><div class="timeline"><div class="today-reminder"><h5>今天重點提醒</h5><ul><li>台南 07:30 出發，桃機主停 T2 P4</li><li>出關後右轉走戶外到 10 號站牌</li><li>Day1 只求順利取車與入住，不加塞高強度行程</li></ul></div><div class="timeline-item" data-itemid="day1-item1"><div class="time">07:30</div><div class="content"><div class="title-row"><h4>台南市永康區東橋七路 193 號出發</h4><label class="complete-wrap"><input class="done-check" data-key="day1-item1" type="checkbox"/><span>已完成</span></label></div><p>交通模組正式定稿時間；北上桃機，主停車方案 T2 P4</p></div></div><div class="timeline-item" data-itemid="day1-item2"><div class="time">11:00 前後</div><div class="content"><div class="title-row"><h4>桃園機場 P4 停車場</h4><label class="complete-wrap"><input class="done-check" data-key="day1-item2" type="checkbox"/><span>已完成</span></label></div><p>337041 桃園市大園區航站南路 9 號｜到場只認「第二航廈 / P4」；若原地下入口沒開，先走 T2 1F 車道再依現場導引下地下層</p><div class="spot-link-row"><span class="mono">主導航：桃園機場 P4 停車場</span><a href="https://www.google.com/maps/search/?api=1&amp;query=%E6%A1%83%E5%9C%92%E6%A9%9F%E5%A0%B4+P4+%E5%81%9C%E8%BB%8A%E5%A0%B4" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div></div><div class="timeline-item" data-itemid="day1-item3"><div class="time">11:00–11:30</div><div class="content"><div class="title-row"><h4>整理行李／轉往 T1 報到</h4><label class="complete-wrap"><input class="done-check" data-key="day1-item3" type="checkbox"/><span>已完成</span></label></div><p>廉航國際線預留 2–3 小時；親子同行不壓縮</p></div></div><div class="timeline-item" data-itemid="day1-item4"><div class="time">13:30–15:55</div><div class="content"><div class="title-row"><h4>FD230 桃園 T1 → 那霸 OKA</h4><label class="complete-wrap"><input class="done-check" data-key="day1-item4" type="checkbox"/><span>已完成</span></label></div><p>成人托運 20kg；單件不得超過 32kg</p></div></div><div class="timeline-item" data-itemid="day1-item5"><div class="time">出關後</div><div class="content"><div class="title-row"><h4>出關右轉 → 戶外直走 → 10 號站牌</h4><label class="complete-wrap"><input class="done-check" data-key="day1-item5" type="checkbox"/><span>已完成</span></label></div><p>不進國內線室內大廳，不上樓，不找櫃檯</p><div class="spot-link-row"><span class="mono">MapCode：232 543 458*36</span><a href="https://www.google.com/maps/search/?api=1&amp;query=OTS+Rent-a-car+Rinku+Toyosaki+Branch" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="232 543 458*36">複製</button></div></div></div><div class="timeline-item" data-itemid="day1-item6"><div class="time">17:30</div><div class="content"><div class="title-row"><h4>OTS 臨空豐崎營業所取車</h4><label class="complete-wrap"><input class="done-check" data-key="day1-item6" type="checkbox"/><span>已完成</span></label></div><p>核對兒童座椅、ETC、尊爵安心險；熟悉右駕</p><div class="spot-link-row"><span class="mono">MapCode：232 543 458*36</span><a href="https://www.google.com/maps/search/?api=1&amp;query=OTS+Rent-a-car+Rinku+Toyosaki+Branch" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="232 543 458*36">複製</button></div></div></div><div class="timeline-item" data-itemid="day1-item7"><div class="time">18:15–18:35</div><div class="content"><div class="title-row"><h4>前往 Hewitt Resort Naha</h4><label class="complete-wrap"><input class="done-check" data-key="day1-item7" type="checkbox"/><span>已完成</span></label></div><p>入住 3/29–3/31</p><div class="spot-link-row"><span class="mono">MapCode：33 158 622*88</span><a href="https://maps.google.com/?q=26.218074,127.695838" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 158 622*88">複製</button></div></div></div><div class="timeline-item" data-itemid="day1-item8"><div class="time">19:00 後</div><div class="content"><div class="title-row"><h4>晚餐＋國際通輕踩點</h4><label class="complete-wrap"><input class="done-check" data-key="day1-item8" type="checkbox"/><span>已完成</span></label></div><p>第一晚不拉遠、不做高強度景點</p><div class="spot-link-row"><span class="mono">MapCode：33 157 275*40</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Kokusai+Dori+Naha" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 157 275*40">複製</button></div></div></div></div></details><details class="day-card" data-date="2026-03-30" data-day="day2"><summary><div><strong>DAY2｜3/30（一）｜那霸＋南部順時針｜室內親子＋採購日</strong><div class="tags"><span class="tag">#水族館</span><span class="tag">#海鮮</span><span class="tag">#瀨長島</span><span class="tag">#藥妝</span></div></div><span>展開</span></summary><div class="timeline"><div class="today-reminder"><h5>今天重點提醒</h5><ul><li>DMM 為室內親子主場</li><li>糸滿魚市場與瀨長島以輕鬆慢逛為主</li><li>晚上回那霸，不安排太晚活動</li></ul></div><div class="timeline-item" data-itemid="day2-item1"><div class="time">09:00</div><div class="content"><div class="title-row"><h4>Hewitt 出發</h4><label class="complete-wrap"><input class="done-check" data-key="day2-item1" type="checkbox"/><span>已完成</span></label></div><p>續住那霸</p><div class="spot-link-row"><span class="mono">MapCode：33 158 622*88</span><a href="https://maps.google.com/?q=26.218074,127.695838" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 158 622*88">複製</button></div></div></div><div class="timeline-item" data-itemid="day2-item2"><div class="time">09:30–11:00</div><div class="content"><div class="title-row"><h4>DMM Kariyushi 水族館</h4><label class="complete-wrap"><input class="done-check" data-key="day2-item2" type="checkbox"/><span>已完成</span></label></div><p>室內親子主場</p><div class="spot-link-row"><span class="mono">MapCode：232 543 400*25</span><a href="https://www.google.com/maps/search/?api=1&amp;query=DMM+Kariyushi+Aquarium" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="232 543 400*25">複製</button></div></div></div><div class="timeline-item" data-itemid="day2-item3"><div class="time">11:05–12:00</div><div class="content"><div class="title-row"><h4>iias 沖繩豐崎</h4><label class="complete-wrap"><input class="done-check" data-key="day2-item3" type="checkbox"/><span>已完成</span></label></div><p>休息、洗手間、補給</p><div class="spot-link-row"><span class="mono">MapCode：232 543 368*63</span><a href="https://www.google.com/maps/search/?api=1&amp;query=iias+Okinawa+Toyosaki" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="232 543 368*63">複製</button></div></div></div><div class="timeline-item" data-itemid="day2-item4"><div class="time">12:20–13:30</div><div class="content"><div class="title-row"><h4>糸滿魚市場</h4><label class="complete-wrap"><input class="done-check" data-key="day2-item4" type="checkbox"/><span>已完成</span></label></div><p>午餐主場</p><div class="spot-link-row"><span class="mono">MapCode：232 484 077*14</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Itoman+Fish+Center" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="232 484 077*14">複製</button></div></div></div><div class="timeline-item" data-itemid="day2-item5"><div class="time">14:00–15:10</div><div class="content"><div class="title-row"><h4>瀨長島 Umikaji Terrace</h4><label class="complete-wrap"><input class="done-check" data-key="day2-item5" type="checkbox"/><span>已完成</span></label></div><p>看海、看飛機、甜點輕鬆拍照</p><div class="spot-link-row"><span class="mono">MapCode：33 003 122*75</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Senagajima+Umikaji+Terrace" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 003 122*75">複製</button><details class="sub-fold"><summary>參考店舖</summary><div class="sub-body"><div class="sub-list">
+<div class="shop-item"><strong>NO.1｜伴手禮</strong><p class="shop-note">瀨長島代表伴手禮區，可先看有無要回台送禮品項</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Umikaji+Terrace+NO.1+Okinawa" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>NO.4｜漢堡</strong><p class="shop-note">想吃輕食正餐時可優先參考</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Umikaji+Terrace+NO.4+burger" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>NO.11｜風獅爺小蛋糕</strong><p class="shop-note">沖繩感很強，適合拍照與小點心</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Umikaji+Terrace+NO.11" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>NO.14｜生魚片</strong><p class="shop-note">若想補海鮮，可視現場狀況短停</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Umikaji+Terrace+NO.14+sashimi" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>NO.32｜鬆餅</strong><p class="shop-note">你指定的重點甜點位</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Umikaji+Terrace+NO.32+pancake" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>Hammock Cafe La Isla</strong><p class="shop-note">吊床餐廳，適合休息與看海</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Hammock+Cafe+La+Isla+Senagajima" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>yukuRu</strong><p class="shop-note">美式冰淇淋</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=yukuRu+Senagajima" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>Taco Rice Cafe kijimuna</strong><p class="shop-note">塔可飯代表店</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Taco+Rice+Cafe+kijimuna+Senagajima" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>okurimono</strong><p class="shop-note">選物／伴手禮</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=okurimono+Senagajima" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+</div></div></details></div></div></div><div class="timeline-item" data-itemid="day2-item6"><div class="time">17:30–19:00</div><div class="content"><div class="title-row"><h4>牧志公設市場</h4><label class="complete-wrap"><input class="done-check" data-key="day2-item6" type="checkbox"/><span>已完成</span></label></div><p>晚餐型態：邊看邊吃</p><div class="spot-link-row"><span class="mono">MapCode：33 157 264*63</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Makishi+Public+Market" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 157 264*63">複製</button></div></div></div><div class="timeline-item" data-itemid="day2-item7"><div class="time">19:00–20:30</div><div class="content"><div class="title-row"><h4>國際通主力藥妝採購</h4><label class="complete-wrap"><input class="done-check" data-key="day2-item7" type="checkbox"/><span>已完成</span></label></div><p>保健品、眼藥水、面膜、貼布、小孩用品</p><div class="spot-link-row"><span class="mono">MapCode：33 157 275*40</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Kokusai+Dori+Naha" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 157 275*40">複製</button></div></div></div></div></details><details class="day-card" data-date="2026-03-31" data-day="day3"><summary><div><strong>DAY3｜3/31（二）｜那霸 → 南城 → 浦添 → 沖繩市｜移動日</strong><div class="tags"><span class="tag">#移動日</span><span class="tag">#玉泉洞</span><span class="tag">#港川</span><span class="tag">#PARCO</span></div></div><span>展開</span></summary><div class="timeline"><div class="today-reminder"><h5>今天重點提醒</h5><ul><li>退房後先走玉泉洞，再北上港川與 PARCO CITY</li><li>這天是移動轉場日，節奏比景點數更重要</li><li>傍晚準時入住 Ref，晚上以補給休息為主</li></ul></div><div class="timeline-item" data-itemid="day3-item1"><div class="time">09:30</div><div class="content"><div class="title-row"><h4>Hewitt 退房出發</h4><label class="complete-wrap"><input class="done-check" data-key="day3-item1" type="checkbox"/><span>已完成</span></label></div><p>改住 Ref Okinawa Arena</p><div class="spot-link-row"><span class="mono">MapCode：33 158 622*88</span><a href="https://maps.google.com/?q=26.218074,127.695838" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 158 622*88">複製</button></div></div></div><div class="timeline-item" data-itemid="day3-item2"><div class="time">10:30–11:30</div><div class="content"><div class="title-row"><h4>玉泉洞（短停版）</h4><label class="complete-wrap"><input class="done-check" data-key="day3-item2" type="checkbox"/><span>已完成</span></label></div><p>以洞窟本體為主，不拉長</p><div class="spot-link-row"><span class="mono">MapCode：232 495 330*28</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Okinawa+World+Gyokusendo" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="232 495 330*28">複製</button></div></div></div><div class="timeline-item" data-itemid="day3-item3"><div class="time">12:30–14:20</div><div class="content"><div class="title-row"><h4>港川外人住宅區</h4><label class="complete-wrap"><input class="done-check" data-key="day3-item3" type="checkbox"/><span>已完成</span></label></div><p>輕鬆走逛、咖啡甜點、白色街景</p><div class="spot-link-row"><span class="mono">MapCode：33 340 059*58</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Minatogawa+Stateside+Town" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 340 059*58">複製</button><details class="sub-fold"><summary>參考店舖</summary><div class="sub-body"><div class="sub-list">
+<div class="shop-item"><strong>NO.18｜oHacorte</strong><p class="shop-note">雜貨甜點店、水果塔代表</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=oHacorte+Minatogawa" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>NO.20｜Proots</strong><p class="shop-note">港川散步可順逛的質感店舖</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Proots+Minatogawa" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>NO.22｜American Wave</strong><p class="shop-note">古著店、美式復古</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=American+Wave+Minatogawa" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>NO.25｜Houki Boshi</strong><p class="shop-note">可麗露店</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Houki+Boshi+Minatogawa" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>NO.28｜Beans Store</strong><p class="shop-note">咖啡店，必推招牌拿鐵</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Beans+Store+Minatogawa" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>NO.29｜藤井衣料店</strong><p class="shop-note">老派衣料與生活感小店</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=藤井衣料店+Minatogawa" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>NO.30｜PORTRIVER MARKET</strong><p class="shop-note">適合當散步收尾或補拍照點</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=PORTRIVER+MARKET+Minatogawa" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+</div></div></details></div></div></div><div class="timeline-item" data-itemid="day3-item4"><div class="time">14:40–17:40</div><div class="content"><div class="title-row"><h4>PARCO CITY（含晚餐）</h4><label class="complete-wrap"><input class="done-check" data-key="day3-item4" type="checkbox"/><span>已完成</span></label></div><p>今日主要購物場</p><div class="spot-link-row"><span class="mono">MapCode：33 308 899*17</span><a href="https://www.google.com/maps/search/?api=1&amp;query=SAN-A+PARCO+CITY+Okinawa" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 308 899*17">複製</button></div></div></div><div class="timeline-item" data-itemid="day3-item5"><div class="time">18:20–19:00</div><div class="content"><div class="title-row"><h4>前往並入住 Ref Okinawa Arena</h4><label class="complete-wrap"><input class="done-check" data-key="day3-item5" type="checkbox"/><span>已完成</span></label></div><p>入住 3/31–4/3</p><div class="spot-link-row"><span class="mono">MapCode：33 589 619</span><a href="https://maps.google.com/?q=26.334732,127.786576" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 589 619">複製</button></div></div></div></div></details><details class="day-card" data-date="2026-04-01" data-day="day4"><summary><div><strong>DAY4｜4/1（三）｜中部親子日｜兒童王國＋美國村＋Workman＋琉球之牛</strong><div class="tags"><span class="tag">#親子</span><span class="tag">#美國村</span><span class="tag">#Workman</span><span class="tag">#預約晚餐</span></div></div><span>展開</span></summary><div class="timeline"><div class="today-reminder"><h5>今天重點提醒</h5><ul><li>兒童王國是今天主場，下午後段降強度</li><li>Workman 控制 30 分內</li><li>18:45 琉球之牛已預約，別壓縮晚餐前移動</li></ul></div><div class="timeline-item" data-itemid="day4-item1"><div class="time">09:20</div><div class="content"><div class="title-row"><h4>Ref 出發</h4><label class="complete-wrap"><input class="done-check" data-key="day4-item1" type="checkbox"/><span>已完成</span></label></div><p>續住中部</p><div class="spot-link-row"><span class="mono">MapCode：33 589 619</span><a href="https://maps.google.com/?q=26.334732,127.786576" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 589 619">複製</button></div></div></div><div class="timeline-item" data-itemid="day4-item2"><div class="time">09:30–15:30</div><div class="content"><div class="title-row"><h4>沖繩兒童王國</h4><label class="complete-wrap"><input class="done-check" data-key="day4-item2" type="checkbox"/><span>已完成</span></label></div><p>完整主場，下午後段不再排高耗能</p><div class="spot-link-row"><span class="mono">MapCode：33 561 620*12</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Okinawa+Zoo+%26+Museum" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 561 620*12">複製</button></div></div></div><div class="timeline-item" data-itemid="day4-item3"><div class="time">16:10–17:10</div><div class="content"><div class="title-row"><h4>美國村</h4><label class="complete-wrap"><input class="done-check" data-key="day4-item3" type="checkbox"/><span>已完成</span></label></div><p>看海、拍照、慢逛，不久坐</p><div class="spot-link-row"><span class="mono">MapCode：33 526 450*63</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Mihama+American+Village" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 526 450*63">複製</button><details class="sub-fold"><summary>參考店舖</summary><div class="sub-body"><div class="sub-list">
+<div class="shop-item"><strong>The Calif Kitchen</strong><p class="shop-note">海景咖啡餐廳，適合看海景與日落</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=The+Calif+Kitchen+Chatan" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>Blue Seal Depot Island Seaside</strong><p class="shop-note">沖繩代表冰淇淋</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Blue+Seal+Depot+Island+Seaside" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>POTAMA 北谷美國村店</strong><p class="shop-note">豬肉蛋飯糰</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=POTAMA+American+Village+Chatan" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>Christmas Land</strong><p class="shop-note">特色雜貨，好逛好拍</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Christmas+Land+American+Village" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>Chatan Burger Base Atabii’s</strong><p class="shop-note">漢堡店</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Chatan+Burger+Base+Atabii%27s" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>SuiSavon - 首里石鹸</strong><p class="shop-note">香氛／伴手禮</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=SuiSavon+American+Village" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+<div class="shop-item"><strong>Depot Island Boardwalk / Seaside</strong><p class="shop-note">主要海景散步區，最適合夕陽時段</p><div class="shop-actions"><a class="map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Depot+Island+Boardwalk+Seaside" rel="noopener noreferrer" target="_blank">Google Maps</a></div></div>
+</div></div></details></div></div></div><div class="timeline-item" data-itemid="day4-item4"><div class="time">17:20–17:50</div><div class="content"><div class="title-row"><h4>WORKMAN Plus 北谷國體道路店</h4><label class="complete-wrap"><input class="done-check" data-key="day4-item4" type="checkbox"/><span>已完成</span></label></div><p>控制 30 分內，功能型採購</p><div class="spot-link-row"><span class="mono">MapCode：33557766*50</span><a href="https://www.google.com/maps/search/?api=1&amp;query=WORKMAN+Plus+%E5%8C%97%E8%B0%B7%E5%9B%BD%E4%BD%93%E9%81%93%E8%B7%AF%E5%BA%97" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33557766*50">複製</button></div></div></div><div class="timeline-item" data-itemid="day4-item5"><div class="time">18:45–20:45</div><div class="content"><div class="title-row"><h4>琉球之牛 北谷店</h4><div class="reserve-pill">已預約</div><label class="complete-wrap"><input class="done-check" data-key="day4-item5" type="checkbox"/><span>已完成</span></label></div><p>2 大 1 小，座位時間 2 小時</p><div class="spot-link-row"><span class="mono">MapCode：33525890*50</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Ryukyu+no+Ushi+Chatan" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33525890*50">複製</button></div></div></div><div class="timeline-item" data-itemid="day4-item6"><div class="time">20:45–21:15</div><div class="content"><div class="title-row"><h4>返回 Ref Okinawa Arena</h4><label class="complete-wrap"><input class="done-check" data-key="day4-item6" type="checkbox"/><span>已完成</span></label></div><p>收尾休息</p><div class="spot-link-row"><span class="mono">MapCode：33 589 619</span><a href="https://maps.google.com/?q=26.334732,127.786576" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 589 619">複製</button></div></div></div></div></details><details class="day-card" data-date="2026-04-02" data-day="day5"><summary><div><strong>DAY5｜4/2（四）｜北部重頭戲｜美麗海＋Shinmei Coffee＋古宇利＋恐龍公園＋暖暮</strong><div class="tags"><span class="tag">#重點日</span><span class="tag">#早出發</span><span class="tag">#北部</span><span class="tag">#高強度</span></div></div><span>展開</span></summary><div class="timeline"><div class="today-reminder"><h5>今天重點提醒</h5><ul><li>全旅程最累的一天，務必早出發</li><li>美麗海先卡海豚表演、海豚餵食體驗、鯨鯊餵食，海龜餵食視時間安排</li><li>後段只保留 Shinmei Coffee、古宇利、恐龍公園、暖暮，晚上回 Ref 後不再加行程</li></ul></div><div class="timeline-item" data-itemid="day5-item1"><div class="time">06:45</div><div class="content"><div class="title-row"><h4>Ref 出發</h4><label class="complete-wrap"><input class="done-check" data-key="day5-item1" type="checkbox"/><span>已完成</span></label></div><p>全旅程最累的一天，務必準時</p><div class="spot-link-row"><span class="mono">MapCode：33 589 619</span><a href="https://maps.google.com/?q=26.334732,127.786576" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 589 619">複製</button></div></div></div><div class="timeline-item" data-itemid="day5-item2"><div class="time">08:00–08:15</div><div class="content"><div class="title-row"><h4>抵達美麗海停車場</h4><label class="complete-wrap"><input class="done-check" data-key="day5-item2" type="checkbox"/><span>已完成</span></label></div><p>建議早到</p><div class="spot-link-row"><span class="mono">MapCode：553075797</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Okinawa+Churaumi+Aquarium" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="553075797">複製</button></div></div></div><div class="timeline-item" data-itemid="day5-item3"><div class="time">08:30–14:00</div><div class="content"><div class="title-row"><h4>沖繩美麗海水族館</h4><label class="complete-wrap"><input class="done-check" data-key="day5-item3" type="checkbox"/><span>已完成</span></label></div><p>活動優先順序：海豚表演、海豚餵食體驗、鯨鯊餵食；海龜餵食看時間安排</p><div class="spot-link-row"><span class="mono">MapCode：553075797</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Okinawa+Churaumi+Aquarium" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="553075797">複製</button><details class="sub-fold"><summary>美麗海活動細部時間軸</summary><div class="sub-body"><div class="detail-steps">
+<div class="detail-step"><span class="step-time">08:00–08:15</span><p>抵達停車場，步行前先確認當天海豚表演、海豚餵食、鯨鯊餵食、海龜餵食公告時間。</p></div>
+<div class="detail-step"><span class="step-time">08:15–09:10</span><p>優先往海豚區移動，先卡第一個重點活動，避免後面主館逛到錯過。</p></div>
+<div class="detail-step"><span class="step-time">09:10–09:30</span><p>海豚餵食體驗優先。若現場時段略有差異，先以海豚區活動為第一優先。</p></div>
+<div class="detail-step"><span class="step-time">09:30–10:00</span><p>海豚表演卡位／觀賞，這是美麗海最優先主目標之一。</p></div>
+<div class="detail-step"><span class="step-time">10:10–11:30</span><p>回主館區，走黑潮之海、鯨鯊主缸等核心展區。</p></div>
+<div class="detail-step"><span class="step-time">11:30–11:45</span><p>鯨鯊餵食重點時段，提早回到主缸附近等候。</p></div>
+<div class="detail-step"><span class="step-time">11:45–12:30</span><p>午餐／休息，不把體力一次耗光。</p></div>
+<div class="detail-step"><span class="step-time">12:30–13:20</span><p>補次要展區與親子步調較輕鬆的區域。</p></div>
+<div class="detail-step"><span class="step-time">13:20–13:40</span><p>海龜餵食視時間安排，有空再補，不作為必看硬目標。</p></div>
+<div class="detail-step"><span class="step-time">13:40–14:00</span><p>緩衝、拍照、上洗手間、整隊離場，避免壓縮後段行程。</p></div>
+</div><p class="shop-note" style="margin-top:10px">實際分鐘數仍以當日官方公告為準，但頁面上的主次順序固定為：海豚表演 → 海豚餵食體驗 → 鯨鯊餵食 → 海龜餵食視時間安排。</p></div></details></div></div></div><div class="timeline-item" data-itemid="day5-item4"><div class="time">14:20–14:50</div><div class="content"><div class="title-row"><h4>Shinmei Coffee</h4><label class="complete-wrap"><input class="done-check" data-key="day5-item4" type="checkbox"/><span>已完成</span></label></div><p>40 分鐘內結束</p><div class="spot-link-row"><span class="mono">MapCode：553026804*68</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Shinmei+Coffee+Okinawa" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="553026804*68">複製</button></div></div></div><div class="timeline-item" data-itemid="day5-item5"><div class="time">15:00–15:45</div><div class="content"><div class="title-row"><h4>古宇利大橋 南端觀景台</h4><label class="complete-wrap"><input class="done-check" data-key="day5-item5" type="checkbox"/><span>已完成</span></label></div><p>大橋拍照、海景短停、不久坐</p><div class="spot-link-row"><span class="mono">MapCode：485601892*07</span><a href="https://www.google.com/maps/search/?api=1&amp;query=%E5%8F%A4%E5%AE%87%E5%88%A9%E5%A4%A7%E6%A9%8B+%E5%8D%97%E7%AB%AF%E8%A7%80%E6%99%AF%E5%8F%B0" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="485601892*07">複製</button></div></div></div><div class="timeline-item" data-itemid="day5-item6"><div class="time">16:30–17:15</div><div class="content"><div class="title-row"><h4>DINO 恐龍公園</h4><label class="complete-wrap"><input class="done-check" data-key="day5-item6" type="checkbox"/><span>已完成</span></label></div><p>45 分鐘收斂版</p><div class="spot-link-row"><span class="mono">MapCode：206 775 882*84</span><a href="https://www.google.com/maps/search/?api=1&amp;query=DINO+Dinosaur+PARK+Yanbaru+Subtropical+Forest" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="206 775 882*84">複製</button></div></div></div><div class="timeline-item" data-itemid="day5-item7"><div class="time">17:40–18:45</div><div class="content"><div class="title-row"><h4>暖暮拉麵 名護店</h4><label class="complete-wrap"><input class="done-check" data-key="day5-item7" type="checkbox"/><span>已完成</span></label></div><p>吃完直接南返</p><div class="spot-link-row"><span class="mono">MapCode：206 598 371*07</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Ramen+Danbo+Nago" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="206 598 371*07">複製</button></div></div></div><div class="timeline-item" data-itemid="day5-item8"><div class="time">19:00–20:00</div><div class="content"><div class="title-row"><h4>返回 Ref Okinawa Arena</h4><label class="complete-wrap"><input class="done-check" data-key="day5-item8" type="checkbox"/><span>已完成</span></label></div><p>不再加行程</p><div class="spot-link-row"><span class="mono">MapCode：33 589 619</span><a href="https://maps.google.com/?q=26.334732,127.786576" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 589 619">複製</button></div></div></div></div></details><details class="day-card" data-date="2026-04-03" data-day="day6"><summary><div><strong>DAY6｜4/3（五）｜回程日｜雙軌決策版</strong><div class="tags"><span class="tag">#還車優先</span><span class="tag">#A/B 線</span><span class="tag">#收尾</span></div></div><span>展開</span></summary><div class="timeline"><div class="today-reminder"><h5>今天重點提醒</h5><ul><li>今天以還車與報到優先</li><li>A/B 線依 Day4 是否完成 Workman 決定</li><li>還車前先加滿油並保留收據</li></ul></div><div class="timeline-item" data-itemid="day6-item1"><div class="time">A 線</div><div class="content"><div class="title-row"><h4>若 Day4 沒去成 Workman</h4><label class="complete-wrap"><input class="done-check" data-key="day6-item1" type="checkbox"/><span>已完成</span></label></div><p>08:30 退房 → 09:30–10:10 Workman → 10:10–10:50 南下 → 11:00–11:40 簡單午餐 → 11:45–12:05 加油 → 12:30–13:30 OTS 還車 → 14:00 後前往機場</p><div class="spot-link-row"><span class="mono">MapCode：33557766*50</span><a href="https://www.google.com/maps/search/?api=1&amp;query=WORKMAN+Plus+%E5%8C%97%E8%B0%B7%E5%9B%BD%E4%BD%93%E9%81%93%E8%B7%AF%E5%BA%97" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33557766*50">複製</button></div></div></div><div class="timeline-item" data-itemid="day6-item2"><div class="time">B 線</div><div class="content"><div class="title-row"><h4>若 Day4 已去成 Workman（較理想）</h4><label class="complete-wrap"><input class="done-check" data-key="day6-item2" type="checkbox"/><span>已完成</span></label></div><p>08:30 退房 → 09:00–10:00 南下那霸 → 10:00–11:30 國際通午餐＋補買 → 11:30–12:10 前往臨空豐崎 → 12:10–12:30 加油 → 12:45–13:30 OTS 還車 → 14:00 後前往機場</p><div class="spot-link-row"><span class="mono">MapCode：33 157 275*40</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Kokusai+Dori+Naha" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 157 275*40">複製</button></div></div></div><div class="timeline-item" data-itemid="day6-item3"><div class="time">16:55</div><div class="content"><div class="title-row"><h4>FD231 那霸 OKA → 桃園 T1</h4><label class="complete-wrap"><input class="done-check" data-key="day6-item3" type="checkbox"/><span>已完成</span></label></div><p>成人托運 25kg；單件不得超過 32kg</p></div></div></div></details></div></section>
+<section class="section" id="points"><div class="container"><details class="fold-card"><summary>導航點資料庫</summary><div class="fold-body"><p class="fold-desc">點一下 Google Maps 可直接開啟；MapCode 可一鍵複製輸入車機。</p><div class="grid-3">
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">住宿</div><h3>Hewitt Resort Naha</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">33 158 622*88</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>飯店憑證座標</span></div>
+<div class="actions">
+<a class="btn" href="https://maps.google.com/?q=26.218074,127.695838" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="33 158 622*88">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">住宿</div><h3>Ref Okinawa Arena by Vessel Hotels</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">33 589 619</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>飯店憑證座標</span></div>
+<div class="actions">
+<a class="btn" href="https://maps.google.com/?q=26.334732,127.786576" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="33 589 619">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">景點</div><h3>DMM Kariyushi Aquarium</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">232 543 400*25</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>水族館主體</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=DMM+Kariyushi+Aquarium" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="232 543 400*25">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">購物</div><h3>iias 沖繩豐崎</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">232 543 368*63</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>商場主體</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=iias+Okinawa+Toyosaki" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="232 543 368*63">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">美食</div><h3>糸滿魚市場</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">232 484 077*14</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>午餐主場</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Itoman+Fish+Center" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="232 484 077*14">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">景點</div><h3>瀨長島 Umikaji Terrace</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">33 003 122*75</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>小布地圖常用碼</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Senagajima+Umikaji+Terrace" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="33 003 122*75">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">美食</div><h3>第一牧志公設市場</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">33 157 264*63</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>市場主體</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Makishi+Public+Market" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="33 157 264*63">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">景點</div><h3>玉泉洞（Okinawa World）</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">232 495 330*28</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>主入口</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Okinawa+World+Gyokusendo" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="232 495 330*28">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">景點</div><h3>港川外人住宅區</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">33 340 059*58</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>街區代表點</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Minatogawa+Stateside+Town" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="33 340 059*58">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">購物</div><h3>SAN-A PARCO CITY</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">33 308 899*17</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>商場主體</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=SAN-A+PARCO+CITY+Okinawa" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="33 308 899*17">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">景點</div><h3>沖繩兒童王國</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">33 561 620*12</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>官方主入口</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Okinawa+Zoo+%26+Museum" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="33 561 620*12">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">景點</div><h3>美國村</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">33 526 450*63</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>代表導航點</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Mihama+American+Village" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="33 526 450*63">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">購物</div><h3>WORKMAN Plus 北谷國體道路店</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">33557766*50</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>依你最新補充值覆寫</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=WORKMAN+Plus+%E5%8C%97%E8%B0%B7%E5%9B%BD%E4%BD%93%E9%81%93%E8%B7%AF%E5%BA%97" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="33557766*50">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">美食</div><h3>琉球之牛 北谷店</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">33525890*50</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>依你最新補充值覆寫</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Ryukyu+no+Ushi+Chatan" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="33525890*50">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">景點</div><h3>沖繩美麗海水族館</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">553075797</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>官方常用碼</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Okinawa+Churaumi+Aquarium" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="553075797">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">咖啡</div><h3>Shinmei Coffee</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">553026804*68</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>依你最新補充值覆寫</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Shinmei+Coffee+Okinawa" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="553026804*68">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">景點</div><h3>古宇利大橋 南端觀景台</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">485601892*07</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>大橋拍照短停</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=%E5%8F%A4%E5%AE%87%E5%88%A9%E5%A4%A7%E6%A9%8B+%E5%8D%97%E7%AB%AF%E8%A7%80%E6%99%AF%E5%8F%B0" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="485601892*07">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">景點</div><h3>DINO 恐龍公園</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">206 775 882*84</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>採小布地圖更新碼</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=DINO+Dinosaur+PARK+Yanbaru+Subtropical+Forest" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="206 775 882*84">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">美食</div><h3>暖暮拉麵 名護店</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">206 598 371*07</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>晚餐鎖定店</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Ramen+Danbo+Nago" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="206 598 371*07">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">租車</div><h3>OTS 臨空豐崎營業所</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">232 543 458*36</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>取還車點</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=OTS+Rent-a-car+Rinku+Toyosaki+Branch" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="232 543 458*36">複製 MapCode</button>
+</div>
+</div>
+<div class="point-card">
+<div class="point-top"><div><div class="point-type">購物</div><h3>國際通</h3></div></div>
+<div class="meta-row"><span class="meta-label">MapCode</span><span class="mono">33 157 275*40</span></div>
+<div class="meta-row"><span class="meta-label">說明</span><span>回程補買用</span></div>
+<div class="actions">
+<a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Kokusai+Dori+Naha" rel="noopener noreferrer" target="_blank">Google Maps</a>
+<button class="btn secondary" data-copy="33 157 275*40">複製 MapCode</button>
+</div>
+</div>
+</div></div></details></div></section>
+<section class="section" id="food"><div class="container"><details class="section-collapse" open=""><summary>美食地圖</summary><div class="collapse-body"><div class="filters"><button class="filter-btn active" data-cat="all">全部</button><button class="filter-btn" data-cat="海鮮">海鮮</button><button class="filter-btn" data-cat="燒肉">燒肉</button><button class="filter-btn" data-cat="拉麵">拉麵</button><button class="filter-btn" data-cat="咖啡">咖啡</button></div><div class="grid-2" style="margin-top:16px"><div class="food-card" data-cat="海鮮"><div class="food-head"><strong>糸滿魚市場</strong><span class="cat">海鮮</span></div><div class="food-meta">Day2｜否</div><p>午餐主場，生魚片/壽司分食</p><div class="spot-link-row"><span class="mono">MapCode：232 484 077*14</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Itoman+Fish+Center" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="232 484 077*14">複製</button></div></div><div class="food-card" data-cat="海鮮"><div class="food-head"><strong>第一牧志公設市場</strong><span class="cat">海鮮</span></div><div class="food-meta">Day2｜否</div><p>晚餐邊吃邊逛</p><div class="spot-link-row"><span class="mono">MapCode：33 157 264*63</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Makishi+Public+Market" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33 157 264*63">複製</button></div></div><div class="food-card" data-cat="燒肉"><div class="food-head"><strong>琉球之牛 北谷店</strong><span class="cat">燒肉</span></div><div class="food-meta">Day4｜已預約 18:45</div><p>已鎖定晚餐</p><div class="spot-link-row"><span class="mono">MapCode：33525890*50</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Ryukyu+no+Ushi+Chatan" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="33525890*50">複製</button></div></div><div class="food-card" data-cat="拉麵"><div class="food-head"><strong>暖暮拉麵 名護店</strong><span class="cat">拉麵</span></div><div class="food-meta">Day5｜否</div><p>Day5 晚餐鎖定</p><div class="spot-link-row"><span class="mono">MapCode：206 598 371*07</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Ramen+Danbo+Nago" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="206 598 371*07">複製</button></div></div><div class="food-card" data-cat="咖啡"><div class="food-head"><strong>Shinmei Coffee</strong><span class="cat">咖啡</span></div><div class="food-meta">Day5｜否</div><p>北部下午短休</p><div class="spot-link-row"><span class="mono">MapCode：553026804*68</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Shinmei+Coffee+Okinawa" rel="noopener noreferrer" target="_blank">Google Maps</a><button data-copy="553026804*68">複製</button></div></div></div></div></details></div></section>
+<section class="section" id="budget"><div class="container"><h2>預算試算</h2><div class="grid-2"><div class="panel"><div class="grid-2"><label>購物預估（TWD）<input id="shoppingInput" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:12px" type="number" value="10000"/></label><label>餐飲預估（TWD）<input id="diningInput" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:12px" type="number" value="12000"/></label></div><div class="stats"><div class="stat"><div class="sub">總預算</div><strong>NT$ 80,000</strong></div><div class="stat"><div class="sub">目前估算</div><strong id="budgetTotal"></strong></div><div class="stat"><div class="sub">剩餘空間</div><strong id="budgetRemain"></strong></div><div class="stat"><div class="sub">固定資料</div><strong>租車 54,150円＋住宿</strong></div></div></div><div class="panel"><canvas height="220" id="budgetChart"></canvas></div></div></div></section>
+<section class="section" id="checklist"><div class="container"><h2>行前 Checklist</h2><div class="check-groups"><div class="check-group"><h3>出發前</h3><div class="checklist"><label><input class="check-persist" type="checkbox"/>護照效期已確認（至少回程日後 6 個月）</label><label><input class="check-persist" type="checkbox"/>台灣駕照正本已備妥</label><label><input class="check-persist" type="checkbox"/>駕照日文譯本已備妥</label><label><input class="check-persist" type="checkbox"/>OTS 訂單與保險內容已確認</label><label><input class="check-persist" type="checkbox"/>已完成 OTS 線上事前講解</label><label><input class="check-persist" type="checkbox"/>eSIM 已在台灣先安裝</label><label><input class="check-persist" type="checkbox"/>知道日本當地再開啟 eSIM 數據</label><label><input class="check-persist" type="checkbox"/>桃機主停 T2 P4，備案已想好</label></div></div><div class="check-group"><h3>在沖繩</h3><div class="checklist"><label><input class="check-persist" type="checkbox"/>機場出關右轉走戶外到 10 號站牌搭 OTS 接駁</label><label><input class="check-persist" type="checkbox"/>OTS 機場報到時已出示 QR 碼</label><label><input class="check-persist" type="checkbox"/>取車後先確認兒童座椅、ETC、保險內容</label><label><input class="check-persist" type="checkbox"/>入住前再次確認當日晚餐與隔天節奏</label><label><input class="check-persist" type="checkbox"/>油量低於半桶時提前規劃加油站</label></div></div><div class="check-group"><h3>回程前</h3><div class="checklist"><label><input class="check-persist" type="checkbox"/>還車前加滿油並保留收據</label><label><input class="check-persist" type="checkbox"/>清空車內垃圾與私人物品</label><label><input class="check-persist" type="checkbox"/>Day6 不硬塞景點，以還車優先</label><label><input class="check-persist" type="checkbox"/>回程托運重量再次確認</label></div></div></div></div></section>
+
+<div class="copy-toast" id="copyToast" role="status" aria-live="polite">已複製</div>
+<nav class="bottom-appnav" aria-label="底部快捷列">
+  <div class="bar">
+    <a href="#overview" data-navlink><span class="emoji">🏝️</span><span>總覽</span></a>
+    <a href="#timeline" data-navlink><span class="emoji">🗓️</span><span>行程</span></a>
+    <a href="#points" data-navlink><span class="emoji">🧭</span><span>導航</span></a>
+    <a href="#food" data-navlink><span class="emoji">🍜</span><span>美食</span></a>
+    <a href="#checklist" data-navlink><span class="emoji">✅</span><span>清單</span></a>
+    <button id="scrollTopBtn" type="button"><span class="emoji">⬆️</span><span>置頂</span></button>
+  </div>
+</nav>
+
+<footer class="footer"><div class="container">成品版本：2026-03-08 v8。用途：離線／本機開啟。建議手機以 Safari / Chrome 加到主畫面使用。</div></footer>
+
+<script>
+(function(){
+  const body=document.body;
+  const toggle=document.getElementById('themeToggle');
+  const toast=document.getElementById('copyToast');
+  const readProgress=document.getElementById('readProgress');
+  const a2hsBanner=document.getElementById('a2hsBanner');
+  const dismissA2hs=document.getElementById('dismissA2hs');
+  const heroTodayBtn=document.getElementById('heroTodayBtn');
+  const scrollTopBtn=document.getElementById('scrollTopBtn');
+  const navLinks=[...document.querySelectorAll('[data-navlink]')];
+  const sectionIds=['overview','timeline','points','food','budget','checklist'];
+
+  const storedTheme=localStorage.getItem('okinawa-theme')||'light';
+  if(storedTheme==='dark') body.classList.add('dark');
+  function syncThemeButton(){
+    if(toggle) toggle.textContent=body.classList.contains('dark')?'切換淺色':'切換深色';
+  }
+  syncThemeButton();
+
+  if(toggle){
+    toggle.addEventListener('click',()=>{
+      body.classList.toggle('dark');
+      localStorage.setItem('okinawa-theme',body.classList.contains('dark')?'dark':'light');
+      syncThemeButton();
+      renderBudget();
+    });
+  }
+
+  if(localStorage.getItem('okinawa-a2hs-dismissed')==='1' && a2hsBanner){
+    a2hsBanner.style.display='none';
+  }
+  dismissA2hs?.addEventListener('click',()=>{
+    localStorage.setItem('okinawa-a2hs-dismissed','1');
+    if(a2hsBanner) a2hsBanner.style.display='none';
+  });
+
+  function showToast(msg){
+    if(!toast) return;
+    toast.textContent=msg;
+    toast.classList.add('show');
+    clearTimeout(showToast._timer);
+    showToast._timer=setTimeout(()=>toast.classList.remove('show'),1700);
+  }
+
+  async function copyText(v){
+    try{
+      if(navigator.clipboard && window.isSecureContext){
+        await navigator.clipboard.writeText(v);
+      }else{
+        const ta=document.createElement('textarea');
+        ta.value=v;
+        ta.setAttribute('readonly','');
+        ta.style.position='fixed';
+        ta.style.opacity='0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+      }
+      showToast('已複製：'+v);
+    }catch(err){
+      window.prompt('請手動複製以下內容：', v);
+    }
+  }
+
+  document.addEventListener('click',e=>{
+    const t=e.target.closest('[data-copy]');
+    if(t){ copyText(t.getAttribute('data-copy')); }
+  });
+
+  document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
+    const cat=btn.dataset.cat;
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.food-card').forEach(card=>{
+      card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';
+    });
+  }));
+
+  document.querySelectorAll('.check-persist').forEach((el,i)=>{
+    const key='okinawa-check-'+i;
+    el.checked=localStorage.getItem(key)==='1';
+    el.addEventListener('change',()=>localStorage.setItem(key,el.checked?'1':'0'));
+  });
+
+  const budgetState={shopping:10000,dining:12000};
+
+  function ensureChartFallback(message){
+    const panel=document.getElementById('budgetChart')?.closest('.panel');
+    if(!panel) return;
+    let fallback=panel.querySelector('.chart-fallback');
+    if(!fallback){
+      fallback=document.createElement('div');
+      fallback.className='chart-fallback';
+      panel.appendChild(fallback);
+    }
+    fallback.textContent=message;
+  }
+
+  function clearChartFallback(){
+    document.querySelector('.chart-fallback')?.remove();
+  }
+
+  function renderBudget(){
+    const fixed=54150*0.22 + 6594 + 10334;
+    const total=fixed + budgetState.shopping + budgetState.dining;
+    const totalEl=document.getElementById('budgetTotal');
+    const remainEl=document.getElementById('budgetRemain');
+    if(totalEl) totalEl.textContent='NT$ '+Math.round(total).toLocaleString();
+    if(remainEl) remainEl.textContent='NT$ '+Math.round(80000-total).toLocaleString();
+
+    if(!window.Chart){
+      ensureChartFallback('目前未載入圖表元件，但預算數字仍可正常查看。');
+      return;
+    }
+    clearChartFallback();
+    if(window._budgetChart) window._budgetChart.destroy();
+    const ctx=document.getElementById('budgetChart');
+    if(!ctx) return;
+    const dark=document.body.classList.contains('dark');
+    window._budgetChart=new Chart(ctx,{
+      type:'doughnut',
+      data:{
+        labels:['固定成本','餐飲','購物'],
+        datasets:[{
+          data:[fixed,budgetState.dining,budgetState.shopping],
+          backgroundColor:dark?['#3b82f6','#fb923c','#34d399']:['#60a5fa','#f59e0b','#10b981'],
+          borderColor:dark?'#0c1a31':'#ffffff'
+        }]
+      },
+      options:{
+        plugins:{
+          legend:{
+            position:'bottom',
+            labels:{color:dark?'#e5e7eb':'#374151'}
+          }
+        }
+      }
+    });
+  }
+
+  ['shoppingInput','diningInput'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.addEventListener('input',()=>{
+      budgetState.shopping=+document.getElementById('shoppingInput').value||0;
+      budgetState.dining=+document.getElementById('diningInput').value||0;
+      renderBudget();
+    });
+  });
+  renderBudget();
+
+  const dayCards=[...document.querySelectorAll('#timeline .day-card')];
+  function collapseAllDays(){ dayCards.forEach(d=>d.open=false); }
+
+  function getLocalDateKey(){
+    const now=new Date();
+    const y=now.getFullYear();
+    const m=String(now.getMonth()+1).padStart(2,'0');
+    const d=String(now.getDate()).padStart(2,'0');
+    return `${y}-${m}-${d}`;
+  }
+
+  function openTodayDay(opts={}){
+    const todayKey=getLocalDateKey();
+    let target=dayCards.find(d=>d.dataset.date===todayKey);
+    if(!target) target=dayCards[0];
+    dayCards.forEach(d=>d.open=false);
+    if(target) target.open=true;
+    if(opts.scroll!==false) target?.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  document.getElementById('collapseAllDays')?.addEventListener('click',collapseAllDays);
+  document.getElementById('openTodayDay')?.addEventListener('click',()=>openTodayDay());
+  heroTodayBtn?.addEventListener('click',()=>openTodayDay());
+
+  const doneChecks=[...document.querySelectorAll('.done-check')];
+  doneChecks.forEach(ch=>{
+    const key='okinawa-done-'+ch.dataset.key;
+    ch.checked=localStorage.getItem(key)==='1';
+    const item=ch.closest('.timeline-item');
+    if(ch.checked) item?.classList.add('is-done');
+    ch.addEventListener('change',()=>{
+      localStorage.setItem(key,ch.checked?'1':'0');
+      item?.classList.toggle('is-done',ch.checked);
+    });
+  });
+
+  function updateReadProgress(){
+    const scrollTop=window.scrollY||document.documentElement.scrollTop;
+    const docHeight=document.documentElement.scrollHeight-window.innerHeight;
+    const progress=docHeight>0?(scrollTop/docHeight)*100:0;
+    if(readProgress) readProgress.style.width=Math.min(100,Math.max(0,progress))+'%';
+  }
+
+  function setActiveSection(){
+    const midpoint=window.scrollY + window.innerHeight*0.35;
+    let current='overview';
+    for(const id of sectionIds){
+      const sec=document.getElementById(id);
+      if(sec && sec.offsetTop<=midpoint) current=id;
+    }
+    navLinks.forEach(link=>{
+      const active=link.getAttribute('href')==='#'+current;
+      link.classList.toggle('active',active);
+    });
+  }
+
+  scrollTopBtn?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+  window.addEventListener('scroll',()=>{ updateReadProgress(); setActiveSection(); }, {passive:true});
+  updateReadProgress();
+  setActiveSection();
+})();
+</script>
+
+</body></html>
