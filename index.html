@@ -79,6 +79,41 @@ body.has-bottom-nav .footer{padding-bottom:120px}
   .bottom-appnav a,.bottom-appnav button{min-height:52px;font-size:11px}
 }
 
+
+/* iPhone 強化版：浮動收合鈕 */
+.day-fab{
+  position:fixed;
+  right:16px;
+  bottom:calc(96px + env(safe-area-inset-bottom));
+  z-index:95;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:50px;
+  padding:0 16px;
+  border-radius:999px;
+  border:1px solid color-mix(in srgb,var(--brand) 35%, var(--line));
+  background:color-mix(in srgb,var(--brand) 92%, white 8%);
+  color:#fff;
+  font-size:14px;
+  font-weight:800;
+  box-shadow:0 12px 28px rgba(37,99,235,.28);
+  cursor:pointer;
+  user-select:none;
+  -webkit-user-select:none;
+  touch-action:none;
+}
+.day-fab.show{display:inline-flex}
+.day-fab.dragging{
+  opacity:.92;
+  box-shadow:0 16px 36px rgba(15,23,42,.28);
+}
+.day-fab .fab-emoji{font-size:16px;line-height:1}
+body.dark .day-fab{
+  background:color-mix(in srgb,var(--brand) 86%, #0f172a 14%);
+}
+
 </style>
 </head>
 <body class="has-bottom-nav">
@@ -347,6 +382,12 @@ body.has-bottom-nav .footer{padding-bottom:120px}
   </div>
 </nav>
 
+
+<button id="collapseCurrentDayFab" class="day-fab" type="button" aria-label="收合目前這天">
+  <span class="fab-emoji">📁</span>
+  <span>收合本日</span>
+</button>
+
 <footer class="footer"><div class="container">成品版本：2026-03-08 v8。用途：離線／本機開啟。建議手機以 Safari / Chrome 加到主畫面使用。</div></footer>
 
 <script>
@@ -359,6 +400,7 @@ body.has-bottom-nav .footer{padding-bottom:120px}
   const dismissA2hs=document.getElementById('dismissA2hs');
   const heroTodayBtn=document.getElementById('heroTodayBtn');
   const scrollTopBtn=document.getElementById('scrollTopBtn');
+  const collapseCurrentDayFab=document.getElementById('collapseCurrentDayFab');
   const navLinks=[...document.querySelectorAll('[data-navlink]')];
   const sectionIds=['overview','timeline','points','food','budget','checklist'];
 
@@ -502,7 +544,33 @@ body.has-bottom-nav .footer{padding-bottom:120px}
   renderBudget();
 
   const dayCards=[...document.querySelectorAll('#timeline .day-card')];
-  function collapseAllDays(){ dayCards.forEach(d=>d.open=false); }
+  let currentOpenDay=null;
+
+  function updateCollapseFab(){
+    if(!collapseCurrentDayFab) return;
+    const openDay=dayCards.find(d=>d.open);
+    currentOpenDay=openDay||null;
+    collapseCurrentDayFab.classList.toggle('show', !!openDay);
+  }
+
+  function collapseAllDays(){
+    dayCards.forEach(d=>d.open=false);
+    currentOpenDay=null;
+    updateCollapseFab();
+  }
+
+  function openOnlyDay(target, opts={}){
+    if(!target) return;
+    dayCards.forEach(d=>{
+      if(d!==target) d.open=false;
+    });
+    target.open=true;
+    currentOpenDay=target;
+    updateCollapseFab();
+    if(opts.scroll!==false){
+      target.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  }
 
   function getLocalDateKey(){
     const now=new Date();
@@ -516,14 +584,123 @@ body.has-bottom-nav .footer{padding-bottom:120px}
     const todayKey=getLocalDateKey();
     let target=dayCards.find(d=>d.dataset.date===todayKey);
     if(!target) target=dayCards[0];
-    dayCards.forEach(d=>d.open=false);
-    if(target) target.open=true;
-    if(opts.scroll!==false) target?.scrollIntoView({behavior:'smooth',block:'start'});
+    openOnlyDay(target, opts);
   }
 
   document.getElementById('collapseAllDays')?.addEventListener('click',collapseAllDays);
   document.getElementById('openTodayDay')?.addEventListener('click',()=>openTodayDay());
   heroTodayBtn?.addEventListener('click',()=>openTodayDay());
+
+  dayCards.forEach(day=>{
+    day.addEventListener('toggle',()=>{
+      if(day.open){
+        dayCards.forEach(other=>{
+          if(other!==day) other.open=false;
+        });
+        currentOpenDay=day;
+      }else if(currentOpenDay===day){
+        currentOpenDay=null;
+      }
+      updateCollapseFab();
+    });
+  });
+
+  collapseCurrentDayFab?.addEventListener('click',()=>{
+    if(currentOpenDay){
+      currentOpenDay.open=false;
+      currentOpenDay=null;
+      updateCollapseFab();
+    }
+  });
+
+  (function initDayFabDrag(){
+    if(!collapseCurrentDayFab) return;
+
+    const storageKey='okinawa-dayfab-pos';
+    let startX=0, startY=0, startLeft=0, startTop=0;
+    let dragging=false, moved=false;
+    let activePointerId=null;
+
+    function clamp(val,min,max){ return Math.min(max,Math.max(min,val)); }
+
+    function setFabPosition(left, top){
+      const rect=collapseCurrentDayFab.getBoundingClientRect();
+      const maxLeft=window.innerWidth-rect.width-8;
+      const maxTop=window.innerHeight-rect.height-8;
+      collapseCurrentDayFab.style.left=clamp(left,8,maxLeft)+'px';
+      collapseCurrentDayFab.style.top=clamp(top,8,maxTop)+'px';
+      collapseCurrentDayFab.style.right='auto';
+      collapseCurrentDayFab.style.bottom='auto';
+    }
+
+    function saveFabPosition(){
+      localStorage.setItem(storageKey, JSON.stringify({
+        left: collapseCurrentDayFab.offsetLeft,
+        top: collapseCurrentDayFab.offsetTop
+      }));
+    }
+
+    function restoreFabPosition(){
+      try{
+        const saved=JSON.parse(localStorage.getItem(storageKey)||'null');
+        if(saved && typeof saved.left==='number' && typeof saved.top==='number'){
+          requestAnimationFrame(()=>setFabPosition(saved.left, saved.top));
+        }
+      }catch(err){}
+    }
+
+    function onPointerMove(e){
+      if(!dragging || e.pointerId!==activePointerId) return;
+      const dx=e.clientX-startX;
+      const dy=e.clientY-startY;
+      if(Math.abs(dx)>4 || Math.abs(dy)>4) moved=true;
+      setFabPosition(startLeft+dx, startTop+dy);
+    }
+
+    function onPointerUp(e){
+      if(!dragging || e.pointerId!==activePointerId) return;
+      dragging=false;
+      activePointerId=null;
+      collapseCurrentDayFab.classList.remove('dragging');
+      try{ collapseCurrentDayFab.releasePointerCapture?.(e.pointerId); }catch(err){}
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', onPointerUp);
+      window.removeEventListener('pointercancel', onPointerUp);
+      if(moved) saveFabPosition();
+      setTimeout(()=>{ moved=false; },0);
+    }
+
+    collapseCurrentDayFab.addEventListener('pointerdown',(e)=>{
+      startX=e.clientX;
+      startY=e.clientY;
+      startLeft=collapseCurrentDayFab.offsetLeft;
+      startTop=collapseCurrentDayFab.offsetTop;
+      dragging=true;
+      moved=false;
+      activePointerId=e.pointerId;
+      collapseCurrentDayFab.classList.add('dragging');
+      try{ collapseCurrentDayFab.setPointerCapture?.(e.pointerId); }catch(err){}
+      window.addEventListener('pointermove', onPointerMove, {passive:false});
+      window.addEventListener('pointerup', onPointerUp, {passive:true});
+      window.addEventListener('pointercancel', onPointerUp, {passive:true});
+    });
+
+    collapseCurrentDayFab.addEventListener('click',(e)=>{
+      if(moved){
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+
+    window.addEventListener('resize',()=>{
+      if(collapseCurrentDayFab.style.left){
+        setFabPosition(collapseCurrentDayFab.offsetLeft, collapseCurrentDayFab.offsetTop);
+        saveFabPosition();
+      }
+    });
+
+    restoreFabPosition();
+  })();
 
   const doneChecks=[...document.querySelectorAll('.done-check')];
   doneChecks.forEach(ch=>{
@@ -561,6 +738,7 @@ body.has-bottom-nav .footer{padding-bottom:120px}
   window.addEventListener('scroll',()=>{ updateReadProgress(); setActiveSection(); }, {passive:true});
   updateReadProgress();
   setActiveSection();
+  updateCollapseFab();
 })();
 </script>
 
